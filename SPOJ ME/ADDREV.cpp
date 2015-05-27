@@ -10,6 +10,7 @@ int rev(int k){
 	}
 	return r;
 }
+
 int main(int argc, char** argv) {
 	int n;
 	scanf("%d",&n);
