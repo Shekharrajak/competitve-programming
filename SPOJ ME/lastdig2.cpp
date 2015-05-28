@@ -11,6 +11,7 @@ int main() {
 		scanf("%lld",&b); 
 		l=strlen(a);
 		c=(a[l-1]-'0');
+		printf("c is : %lld \n",c);
 		if(c==0) {
 			printf("0\n"); 
 			

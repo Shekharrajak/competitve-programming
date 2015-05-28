@@ -1,15 +1,15 @@
-# Project: lastdig2
+# Project: lastdig2 other
 # Makefile created by Dev-C++ 5.7.1
 
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = lastdig2.o
-LINKOBJ  = lastdig2.o
+OBJ      = "lastdig2\ other'.o"
+LINKOBJ  = "lastdig2 other'.o"
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.8.1/include/c++"
-BIN      = lastdig2.exe
+BIN      = "lastdig2 other.exe"
 CXXFLAGS = $(CXXINCS) 
 CFLAGS   = $(INCS) 
 RM       = rm.exe -f
@@ -24,5 +24,5 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-lastdig2.o: lastdig2.cpp
-	$(CPP) -c lastdig2.cpp -o lastdig2.o $(CXXFLAGS)
+"lastdig2\ other'.o": lastdig2\ other'.cpp
+	$(CPP) -c "lastdig2 other'.cpp" -o "lastdig2 other'.o" $(CXXFLAGS)
