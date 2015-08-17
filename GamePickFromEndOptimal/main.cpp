@@ -4,6 +4,7 @@ N pots, each with some number of gold coins, are arranged in a line. You are pla
   remove the pot,
  and keep the gold pieces. The player with the most gold at the end wins. Develop a strategy for
   playing this game.
+  This is through dp
 */
 #include <iostream>
 #include<bits/stdc++.h>
