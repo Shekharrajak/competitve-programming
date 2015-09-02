@@ -1,45 +1,45 @@
 #include <iostream>
 #include<bits/stdc++.h>
 using namespace std;
-
-typedef struct res{
-    int i;int j;int sum;
-}res;
-
-int kadane(int a[],int i1,int j1,int n,int k){
-    int i;
-    res max_curr,result;//*max_sum;
-    //max_sum = new res();
-        int max_= INT_MIN;
-    max_curr.sum = INT_MIN;
-
-    for(int i=i1;i<=j1;i++){
-        if(max_curr.sum<0){
-            max_curr.sum = a[i];
-            max_curr.i=i;
-            max_curr.j=i;
-        }
-        else{
-            max_curr.sum +=a[i];
-            max_curr.j=i;
-        }
-        if(max_curr.sum > max_){
-            max_ = max_curr.sum;
-            result = max_curr;
-
-        }
-         if(k == abs(result.j - result.i )){
-]
-                return result.sum;
-            }
-            else{
-                kadane(a,result.i,result.j,n,k);
-            }
-
-        //max_sub[i] =max_;
-
-    }
-}
+//
+//typedef struct res{
+//    int i;int j;int sum;
+//}res;
+//
+//int kadane(int a[],int i1,int j1,int n,int k){
+//    int i;
+//    res max_curr,result;//*max_sum;
+//    //max_sum = new res();
+//        int max_= INT_MIN;
+//    max_curr.sum = INT_MIN;
+//
+//    for(int i=i1;i<=j1;i++){
+//        if(max_curr.sum<0){
+//            max_curr.sum = a[i];
+//            max_curr.i=i;
+//            max_curr.j=i;
+//        }
+//        else{
+//            max_curr.sum +=a[i];
+//            max_curr.j=i;
+//        }
+//        if(max_curr.sum > max_){
+//            max_ = max_curr.sum;
+//            result = max_curr;
+//
+//        }
+//         if(k == abs(result.j - result.i )){
+//]
+//                return result.sum;
+//            }
+//            else{
+//                kadane(a,result.i,result.j,n,k);
+//            }
+//
+//        //max_sub[i] =max_;
+//
+//    }
+//}
 bool Checkgcd(int value1, int value2)
 {
     while (value1 != 0 && value2 != 0)
@@ -59,17 +59,27 @@ bool Checkgcd(int value1, int value2)
 }
 void magicland(int n,int m,int k,int key[],int chest[],int gem[]){
     int mat[n];
+    int check[m];
+    for(int i=0;i<m;i++){
+        check[i]= 0;
+    }
     for(int i=0;i<n;i++){
         int count=0;
         for(int j=0;j<m;j++){
-            if(Checkgcd(key[i],chest[j])){
+            if(Checkgcd(key[i],chest[j]) && !check[j]){
                 count+=gem[j];
+                check[j]=1;
             }
             mat[i] =count;
         }
 
     }
-    cout<<kadane(mat,0,n-1,n,k)<<endl;
+    std::sort(mat,mat+n);
+     int count1=0;
+    for(int i=n-1;i>=n-k;i--){
+        count1+=mat[i];
+    }
+    cout<<count1<<endl;
 
 
 }
