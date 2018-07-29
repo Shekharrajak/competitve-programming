@@ -1,3 +1,5 @@
+
+# not completed
 def canKPartition(sanskars, used, todo, target):
     memo = [None]*(1 << len(sanskars))
     memo[-1] = True
