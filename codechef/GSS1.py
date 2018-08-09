@@ -70,11 +70,11 @@ def buildSegmentTree(tree, a, n, start, end, index):
 def querySegmentTree(segTree, x, y, start, end, index):
     if (x > end or y < start):
         # print(('null => x => {}, y => {},start => {}, end=> {}, index => {}').format(
-        x, y, start, end, index))
+        # x, y, start, end, index))
         return SegmentTree()
     if (x <= start and y >= end):
         # print(('x => {}, y => {},start => {}, end=> {}, index => {}').format(
-        x, y, start, end, index))
+        # x, y, start, end, index))
         return segTree[index]
     else:
         mid = (start + end)//2
