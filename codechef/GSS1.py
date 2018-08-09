@@ -27,19 +27,24 @@ def mergeNode(tree, leftNode, rightNode):
     return tree
 
 def mergeNodeQuery(tree, leftNode, rightNode):
-    paparentnode = SegmentTree()
-    paparentnode.totalSum = leftNode.totalSum + rightNode.totalSum
-    paparentnode.maxPrefixSum = max(
-        leftNode.maxPrefixSum, leftNode.totalSum + rightNode.maxPrefixSum)
-    paparentnode.maxSuffixSum = max(
-        leftNode.maxSuffixSum + rightNode.maxPrefixSum, leftNode.maxSuffixSum)
-    maxPreSuf = max(leftNode.maxPrefixSum, rightNode.maxSuffixSum)
-    paparentnode.maxSubarraySum = max(
-        max(leftNode.maxSuffixSum, rightNode.maxPrefixSum), maxPreSuf
-    )
-    # print(('leftNode=> {}, rightNode=> {}, parent => {}, parentnode => {}').format(
-    #  tree[leftNode].toString(), tree[rightNode].toString(), rightNode//2, tree[rightNode//2].toString()))
-    return paparentnode
+    if(leftNode.maxSubarraySum and rightNode.maxSubarraySum):
+        paparentnode = SegmentTree()
+        paparentnode.totalSum = leftNode.totalSum + rightNode.totalSum
+        paparentnode.maxPrefixSum = max(
+            leftNode.maxPrefixSum, leftNode.totalSum + rightNode.maxPrefixSum)
+        paparentnode.maxSuffixSum = max(
+            leftNode.maxSuffixSum + rightNode.maxPrefixSum, leftNode.maxSuffixSum)
+        maxPreSuf = max(leftNode.maxPrefixSum, rightNode.maxSuffixSum)
+        paparentnode.maxSubarraySum = max(
+            max(leftNode.maxSuffixSum, rightNode.maxPrefixSum), maxPreSuf
+        )
+        # print(('leftNode=> {}, rightNode=> {}, parent => {}, parentnode => {}').format(
+        #  tree[leftNode].toString(), tree[rightNode].toString(), rightNode//2, tree[rightNode//2].toString()))
+        return paparentnode
+    elif (leftNode.maxSubarraySum):
+        return leftNode
+    else:
+        return rightNode
 
 def buildSegmentTree(tree, a, n, start, end, index):
     if (start == end):
@@ -64,19 +69,19 @@ def buildSegmentTree(tree, a, n, start, end, index):
 
 def querySegmentTree(segTree, x, y, start, end, index):
     if (x > end or y < start):
-        print(('null => x => {}, y => {},start => {}, end=> {}, index => {}').format(
+        # print(('null => x => {}, y => {},start => {}, end=> {}, index => {}').format(
         x, y, start, end, index))
         return SegmentTree()
     if (x <= start and y >= end):
-        print(('x => {}, y => {},start => {}, end=> {}, index => {}').format(
+        # print(('x => {}, y => {},start => {}, end=> {}, index => {}').format(
         x, y, start, end, index))
         return segTree[index]
     else:
         mid = (start + end)//2
         leftNode = querySegmentTree(segTree, x, y, start, mid, 2*index)
         rightNode = querySegmentTree(segTree, x, y, mid+1, end, 2*index + 1)
-        segTree = mergeNodeQuery(segTree, leftNode, rightNode)
-        return segTree[index]
+        ans = mergeNodeQuery(segTree, leftNode, rightNode)
+        return ans
 
 def getMaxSubarraySum(a, n, x, y):
     import math
