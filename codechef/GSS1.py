@@ -20,7 +20,7 @@ def mergeNode(tree, leftNode, rightNode):
         tree[leftNode].maxSuffixSum + tree[rightNode].maxPrefixSum, tree[rightNode].maxSuffixSum)
     maxPreSuf = max(tree[leftNode].maxPrefixSum, tree[rightNode].maxSuffixSum)
     tree[rightNode//2].maxSubarraySum = max(
-        max(tree[leftNode].maxSuffixSum, tree[rightNode].maxPrefixSum), maxPreSuf
+        tree[leftNode].maxSuffixSum + tree[rightNode].maxPrefixSum, maxPreSuf
     )
     # print(('leftNode=> {}, rightNode=> {}, parent => {}, parentnode => {}').format(
     #  tree[leftNode].toString(), tree[rightNode].toString(), rightNode//2, tree[rightNode//2].toString()))
@@ -48,6 +48,7 @@ def mergeNodeQuery(tree, leftNode, rightNode):
 
 def buildSegmentTree(tree, a, n, start, end, index):
     if (start == end):
+        # print('index => ' , index)
         tree[index].totalSum = a[start]
         tree[index].maxSubarraySum = a[start]
         tree[index].maxPrefixSum = a[start]
@@ -86,12 +87,14 @@ def querySegmentTree(segTree, x, y, start, end, index):
 def getMaxSubarraySum(a, n, x, y):
     import math
     height = math.ceil(math.log(n, 2))
-    maxLen = 2*pow(2,height) - 1
+    # print('height => ' , height)
+    maxLen = 2*pow(2,height) + 1
+    # print('maxLen => ' , maxLen)
     segTree = [SegmentTree() for i in range(maxLen)]
     # print(('height => {}, maxLen => {}, segTree => {}').format(height, maxLen, segTree))
     segTree = buildSegmentTree(segTree, a, n, 0, n-1, 1)
-    for i in range(1,maxLen):
-        print(segTree[i].toString(), end="\n")
+    # for i in range(1,maxLen):
+    #     print(segTree[i].toString(), end="\n")
     resNode = querySegmentTree(segTree, x-1, y-1, 0, n-1, 1)
     return resNode.maxSubarraySum
 
