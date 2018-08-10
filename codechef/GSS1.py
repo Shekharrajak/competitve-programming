@@ -96,6 +96,7 @@ def getMaxSubarraySum(a, n, x, y):
     # for i in range(1,maxLen):
     #     print(segTree[i].toString(), end="\n")
     resNode = querySegmentTree(segTree, x-1, y-1, 0, n-1, 1)
+    # maxSubArray return
     return resNode.maxSubarraySum
 
 def main():
